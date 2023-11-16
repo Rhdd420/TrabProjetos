@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body>
+    JavaScript é uma linguagem de programação que permite implementar funcionalidades mais complexas 
+    em páginas web. Sempre que uma página web faz mais do que apenas mostrar informações estáticas para
+     você - ela mostra em tempo real conteúdos atualizados, mapas interativos, animações gráficas em 2D/3D,
+      vídeos, etc. - você pode apostar que o Javascript provavelmente está envolvido.
+    <hr>
+    <form id="myForm">
+        <label for="checkbox">Marque para permitir voltar:</label>
+        <input type="checkbox" id="checkbox">
+      </form>
+    
+      <button id="voltarBtn">Voltar para o Blog</button>
+    
+      <script>
+        function verificarCheckbox() {
+          var checkbox = document.getElementById('checkbox');
+          return checkbox.checked;
+        }
+        window.addEventListener('beforeunload', function (e) {
+          if (!verificarCheckbox()) {
+            
+            var message = 'Você deve marcar o checkbox para permitir voltar à página inicial.';
+            e.returnValue = message; 
+            return message; 
+          }
+        });
+        document.getElementById('myForm').addEventListener('submit', function() {
+          
+          window.history.pushState({}, '', window.location.href);
+        });
+        document.getElementById('voltarBtn').addEventListener('click', function() {
+          if (verificarCheckbox()) {
+           
+            window.location.href = 'blog.html'; 
+          } else {
+            alert('Você deve marcar o checkbox para voltar para o Blog.');
+          }
+        });
+      </script>
+
+</body>
+</html>

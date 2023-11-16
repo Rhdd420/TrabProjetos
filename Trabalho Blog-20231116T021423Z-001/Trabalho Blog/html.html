@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html</title>
+</head>
+<body>
+    HTML (Linguagem de Marcação de Hipertexto) é o código que você usa para estruturar uma página 
+    web e seu conteúdo. Por exemplo, o conteúdo pode ser estruturado em parágrafos, em uma lista com 
+    marcadores ou usando imagens e tabelas. Como o título sugere, este artigo fornecerá uma compreensão 
+    básica do HTML e suas funções.
+
+Então, o que é HTML?
+HTML não é uma linguagem de programação; é uma linguagem de marcação, usada para definir a 
+estrutura do seu conteúdo. HTML consiste de uma série de elementos, que você usa para delimitar ou 
+agrupar diferentes partes do conteúdo para que ele apareça ou atue de determinada maneira. As tags 
+anexas podem transformar uma palavra ou imagem num hiperlink, pode colocar palavras em itálico, pode 
+aumentar ou diminuir a fonte e assim por diante. Por exemplo, veja a seguinte linha de conteúdo:
+<hr>
+<form id="myForm">
+    <label for="checkbox">Marque para permitir voltar:</label>
+    <input type="checkbox" id="checkbox">
+  </form>
+
+  <button id="voltarBtn">Voltar para o Blog</button>
+
+  <script>
+    function verificarCheckbox() {
+      var checkbox = document.getElementById('checkbox');
+      return checkbox.checked;
+    }
+    window.addEventListener('beforeunload', function (e) {
+      if (!verificarCheckbox()) {
+        
+        var message = 'Você deve marcar o checkbox para permitir voltar à página inicial.';
+        e.returnValue = message; 
+        return message; 
+      }
+    });
+    document.getElementById('myForm').addEventListener('submit', function() {
+      
+      window.history.pushState({}, '', window.location.href);
+    });
+    document.getElementById('voltarBtn').addEventListener('click', function() {
+      if (verificarCheckbox()) {
+       
+        window.location.href = 'blog.html'; 
+      } else {
+        alert('Você deve marcar o checkbox para voltar para o Blog.');
+      }
+    });
+  </script>
+
+</body>
+</html>
